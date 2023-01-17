@@ -1,5 +1,5 @@
 <script lang="ts">
-    import BootstrapIcon from "../../widgets/BootstrapIcon.svelte";
+    import BootstrapIcon from "../widgets/BootstrapIcon.svelte";
 </script>
 <header>
     <div class="px-3 py-2 text-bg-dark">
@@ -13,21 +13,21 @@
 
                 <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
                     <li>
-                        <a href="#" class="nav-link text-white">
+                        <a href="/" class="nav-link text-white">
                             <BootstrapIcon class="bi d-block mx-auto mb-1" icon="speedometer2" width="24" height="24">
                             </BootstrapIcon>
                             Dashboard
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="nav-link text-white">
+                        <a href="/" class="nav-link text-white">
                             <BootstrapIcon class="bi d-block mx-auto mb-1"  icon="table" width="24" height="24">
                             </BootstrapIcon>
                             Orders
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="nav-link text-white">
+                        <a href="/" class="nav-link text-white">
                             <BootstrapIcon class="bi d-block mx-auto mb-1"  icon="grid" width="24" height="24">
                             </BootstrapIcon>
                             Products

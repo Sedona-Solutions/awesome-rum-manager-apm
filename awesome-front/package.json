@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "check": "svelte-check --tsconfig ./tsconfig.json"
+    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json"
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^2.0.0",
@@ -21,8 +21,9 @@
   },
   "dependencies": {
     "@popperjs/core": "^2.11.6",
+    "@sveltejs/adapter-static": "^1.0.4",
+    "@sveltejs/kit": "^1.1.1",
     "bootstrap": "5.2.3",
-    "bootstrap-icons": "^1.10.3",
-    "svelte-spa-router": "^3.3.0"
+    "bootstrap-icons": "^1.10.3"
   }
 }

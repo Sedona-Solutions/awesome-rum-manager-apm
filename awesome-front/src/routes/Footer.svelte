@@ -1,5 +1,5 @@
 <script>
-    import BootstrapIcon from "../../widgets/BootstrapIcon.svelte";
+    import BootstrapIcon from "../widgets/BootstrapIcon.svelte";
 </script>
 
 <footer class="container d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
@@ -13,15 +13,15 @@
     </div>
 
     <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-        <li class="ms-3"><a class="text-muted" href="#">
+        <li class="ms-3"><a class="text-muted" href="/">
             <BootstrapIcon icon="twitter" width="24" height="24">
             </BootstrapIcon>
         </a></li>
-        <li class="ms-3"><a class="text-muted" href="#">
+        <li class="ms-3"><a class="text-muted" href="/">
             <BootstrapIcon icon="instagram" width="24" height="24">
             </BootstrapIcon>
         </a></li>
-        <li class="ms-3"><a class="text-muted" href="#">
+        <li class="ms-3"><a class="text-muted" href="/">
             <BootstrapIcon icon="facebook" width="24" height="24">
             </BootstrapIcon>
         </a></li>

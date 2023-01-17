@@ -1,7 +1,7 @@
 import Home from "./Home.svelte";
-import RhumDetail from "./rhum/RhumDetail.svelte";
-import RhumCreate from "./rhum/RhumCreate.svelte";
-import RhumList from "./rhum/RhumList.svelte";
+import RhumDetail from "../routes/rhums/[id]/+page.svelte";
+import RhumCreate from "../routes/rhums/create/+page.svelte";
+import RhumList from "../routes/rhums/(list)/+page.svelte";
 
 export const routes = {
     '/': Home,
