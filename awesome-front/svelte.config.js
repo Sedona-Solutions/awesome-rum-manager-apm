@@ -1,8 +1,7 @@
-import {vitePreprocess} from '@sveltejs/vite-plugin-svelte'
+import {vitePreprocess} from '@sveltejs/kit/vite';
 import adapter from '@sveltejs/adapter-static';
-const dev = process.argv.includes('dev');
 
-export default {
+const config = {
     // Consult https://svelte.dev/docs#compile-time-svelte-preprocess
     // for more information about preprocessors
     preprocess: vitePreprocess(),
@@ -16,7 +15,8 @@ export default {
             precompress: false,
             strict: true,
             paths: {
-                base: dev ? '' : '/awesome-rum-manager-apm',
+                base: '/awesome-rum-manager-apm',
+                assets:  '/awesome-rum-manager-apm',
             },
             // If you are not using a .nojekyll file, change your appDir to something not starting with an underscore.
             // For example, instead of '_app', use 'app_', 'internal', etc.
@@ -27,3 +27,4 @@ export default {
         }
     }
 }
+export default config;

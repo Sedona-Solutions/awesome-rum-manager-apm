@@ -1,4 +1,8 @@
+<script>
+    import {base} from "$app/paths";
+</script>
+
 <ul>
-    <li><a href="/home">Home</a></li>
-    <li><a href="/rhums">Rhums</a></li>
+    <li><a href="{base}/home">Home</a></li>
+    <li><a href="{base}/rhums">Rhums</a></li>
 </ul>
