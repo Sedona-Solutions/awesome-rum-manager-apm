@@ -13,7 +13,6 @@ import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
 import fr.sedona.rum.demo.rum.model.dto.request.RumCreateUpdateRequestDto;
 import fr.sedona.rum.demo.rum.model.dto.response.RumResponseDto;
-import fr.sedona.rum.demo.rum.model.mapper.RumMapper;
 import fr.sedona.rum.demo.rum.service.RumService;
 import lombok.AllArgsConstructor;
 
@@ -25,27 +24,24 @@ import lombok.AllArgsConstructor;
 public class RumResource {
 
     private final RumService rumService;
-    private final RumMapper rumMapper;
 
     @GET
     @Operation(summary = "Find all rums")
     public List<RumResponseDto> findAllRums() {
-        return rumService.findAll().stream()
-                .map(rumMapper::toResponseDto)
-                .toList();
+        return rumService.findAll();
     }
 
     @GET
     @Path("/{id}")
     @Operation(summary = "Find rum by id")
     public RumResponseDto findRumById(@PathParam("id") long id) {
-        return rumMapper.toResponseDto(rumService.findById(id));
+        return rumService.findById(id);
     }
 
     @POST
     @Operation(summary = "Create a new rum")
     public RumResponseDto createRum(@RequestBody(required = true) @Valid RumCreateUpdateRequestDto rumCreateDto) {
-        return rumMapper.toResponseDto(rumService.createRum(rumCreateDto));
+        return rumService.createRum(rumCreateDto);
     }
 
     @PUT
@@ -55,7 +51,7 @@ public class RumResource {
             @PathParam("id") long id,
             @RequestBody(required = true) @Valid RumCreateUpdateRequestDto rumUpdateDto
     ) {
-        return rumMapper.toResponseDto(rumService.updateRum(id, rumUpdateDto));
+        return rumService.updateRum(id, rumUpdateDto);
     }
 
     @DELETE

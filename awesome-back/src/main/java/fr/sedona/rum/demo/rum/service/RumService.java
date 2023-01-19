@@ -8,6 +8,7 @@ import javax.ws.rs.NotFoundException;
 
 import fr.sedona.rum.demo.rum.model.domain.RumEntity;
 import fr.sedona.rum.demo.rum.model.dto.request.RumCreateUpdateRequestDto;
+import fr.sedona.rum.demo.rum.model.dto.response.RumResponseDto;
 import fr.sedona.rum.demo.rum.model.mapper.RumMapper;
 import fr.sedona.rum.demo.rum.repository.RumRepository;
 import lombok.AllArgsConstructor;
@@ -24,32 +25,38 @@ public class RumService {
     private final RumRepository rumRepository;
     private final RumMapper rumMapper;
 
-    public RumEntity findById(long id) {
+    public RumEntity findEntityById(long id) {
         return rumRepository.findByIdOptional(id)
                 .orElseThrow(() -> new NotFoundException(String.format(RUM_NOT_FOUND, id)));
     }
 
-    public List<RumEntity> findAll() {
-        return rumRepository.streamAll().toList();
+    public RumResponseDto findById(long id) {
+        return rumMapper.toResponseDto(this.findEntityById(id));
+    }
+
+    public List<RumResponseDto> findAll() {
+        return rumRepository.streamAll()
+                .map(rumMapper::toResponseDto)
+                .toList();
     }
 
     @Transactional
-    public RumEntity createRum(RumCreateUpdateRequestDto createRequestDto) {
+    public RumResponseDto createRum(RumCreateUpdateRequestDto createRequestDto) {
         var rumEntity = rumMapper.toEntity(createRequestDto);
         rumRepository.persist(rumEntity);
-        return rumEntity;
+        return rumMapper.toResponseDto(rumEntity);
     }
 
     @Transactional
-    public RumEntity updateRum(long id, RumCreateUpdateRequestDto updateRequestDto) {
-        var rumEntity = this.findById(id);
+    public RumResponseDto updateRum(long id, RumCreateUpdateRequestDto updateRequestDto) {
+        var rumEntity = this.findEntityById(id);
         rumRepository.persist(rumMapper.toExistingEntity(updateRequestDto, rumEntity));
-        return rumEntity;
+        return rumMapper.toResponseDto(rumEntity);
     }
 
     @Transactional
     public void deleteRum(long id) {
-        var rumEntity = this.findById(id);
+        var rumEntity = this.findEntityById(id);
         rumRepository.delete(rumEntity);
     }
 }
