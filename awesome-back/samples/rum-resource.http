@@ -35,6 +35,12 @@ Content-Type: application/json
 }
 
 ###
+### Retrieve all rums
+###
+GET {{baseUrl}}/rums
+
+
+###
 ### Retrieve rum by id
 ###
 GET {{baseUrl}}/rums/1

@@ -1,5 +1,7 @@
 package fr.sedona.rum.demo.rum.resource;
 
+import java.util.List;
+
 import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -24,6 +26,14 @@ public class RumResource {
 
     private final RumService rumService;
     private final RumMapper rumMapper;
+
+    @GET
+    @Operation(summary = "Find all rums")
+    public List<RumResponseDto> findAllRums() {
+        return rumService.findAll().stream()
+                .map(rumMapper::toResponseDto)
+                .toList();
+    }
 
     @GET
     @Path("/{id}")

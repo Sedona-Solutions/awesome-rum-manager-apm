@@ -1,5 +1,7 @@
 package fr.sedona.rum.demo.rum.service;
 
+import java.util.List;
+
 import javax.enterprise.context.ApplicationScoped;
 import javax.transaction.Transactional;
 import javax.ws.rs.NotFoundException;
@@ -25,6 +27,10 @@ public class RumService {
     public RumEntity findById(long id) {
         return rumRepository.findByIdOptional(id)
                 .orElseThrow(() -> new NotFoundException(String.format(RUM_NOT_FOUND, id)));
+    }
+
+    public List<RumEntity> findAll() {
+        return rumRepository.streamAll().toList();
     }
 
     @Transactional
