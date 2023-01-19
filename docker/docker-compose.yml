@@ -6,7 +6,7 @@ services:
     hostname: mariadb
     environment:
       - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=rhum-manager
+      - MYSQL_DATABASE=rum-manager
     volumes:
       - ./data/mariadb:/var/lib/mysql
       - ./init/mariadb:/docker-entrypoint-initdb.d

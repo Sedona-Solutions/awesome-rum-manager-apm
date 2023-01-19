@@ -1,0 +1,45 @@
+###
+### Create new rum
+###
+POST {{baseUrl}}/rums
+Content-Type: application/json
+
+{
+    "name": "Cœur de Canne",
+    "description": "Rhum blanc de Martinique",
+    "origin": "Martinique",
+    "distillery": "La Favorite",
+    "type": "WHITE",
+    "alcoholLevel": 50,
+    "price": 34.5,
+    "stock": 500,
+    "bottleSize": 70
+}
+
+###
+### Update rum
+###
+PUT {{baseUrl}}/rums/1
+Content-Type: application/json
+
+{
+    "name": "Cœur de Canne",
+    "description": "Rhum blanc de Martinique",
+    "origin": "Martinique",
+    "distillery": "La Favorite",
+    "type": "WHITE",
+    "alcoholLevel": 50,
+    "price": 33.5,
+    "stock": 450,
+    "bottleSize": 70
+}
+
+###
+### Retrieve rum by id
+###
+GET {{baseUrl}}/rums/1
+
+###
+### Delete rum
+###
+DELETE {{baseUrl}}/rums/1
