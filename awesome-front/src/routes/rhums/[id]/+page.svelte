@@ -2,7 +2,7 @@
     import {rhumsMock} from "@awesome/models/rhum";
 
     export let data
-    let rhums = rhumsMock[data.id - 1];
+    let rhums = $rhumsMock.find(rhum => rhum.id === Number(data.id));
 </script>
 
 <h1>Details</h1>
@@ -12,4 +12,7 @@
 
     <dt>Name</dt>
     <dd>{rhums.name}</dd>
+
+    <dt>Note</dt>
+    <dd>{rhums.note}</dd>
 </dl>
