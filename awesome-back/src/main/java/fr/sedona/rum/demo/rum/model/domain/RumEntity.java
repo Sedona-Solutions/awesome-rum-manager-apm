@@ -3,7 +3,7 @@ package fr.sedona.rum.demo.rum.model.domain;
 import javax.persistence.Entity;
 
 import fr.sedona.rum.demo.rum.model.domain.enums.RumTypeEnum;
-import io.quarkus.hibernate.orm.panache.PanacheEntity;
+import io.quarkus.hibernate.reactive.panache.PanacheEntity;
 import lombok.*;
 
 /**
