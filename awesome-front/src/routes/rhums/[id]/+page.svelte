@@ -1,18 +1,24 @@
 <script lang="ts">
-    import {rhumsMock} from "@awesome/models/rhum";
+    import {onMount} from "svelte";
+    import {Rhum} from "../../../models/rhum.js";
 
     export let data
-    let rhums = $rhumsMock.find(rhum => rhum.id === Number(data.id));
+    let rhum: Rhum = new Rhum();
+    const endpoint = "http://localhost:9080/rums/"+data.id;
+    onMount(async () => {
+        const response = await fetch(endpoint).then(response => response.json());
+        rhum = await response;
+    });
 </script>
 
 <h1>Details</h1>
 <dl>
     <dt>Id</dt>
-    <dd>{rhums.id}</dd>
+    <dd>{rhum.id}</dd>
 
     <dt>Name</dt>
-    <dd>{rhums.name}</dd>
+    <dd>{rhum.name}</dd>
 
-    <dt>Note</dt>
-    <dd>{rhums.note}</dd>
+    <dt>Description</dt>
+    <dd>{rhum.description}</dd>
 </dl>

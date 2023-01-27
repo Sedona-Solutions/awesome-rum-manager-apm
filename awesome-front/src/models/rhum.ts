@@ -1,11 +1,13 @@
-import {writable} from 'svelte/store';
-export interface Rhum {
+export class Rhum {
     id: number;
     name: string;
     note: string;
+    alcoholLevel: number;
+    bottleSize: number;
+    description: string;
+    distillery: string;
+    origin: string;
+    price: number;
+    stock: number;
+    type: string;
 }
-
-export const rhumsMock = writable([
-    {id: 1, name: 'Diplomatico', note: '***'},
-    {id: 2, name: 'Captain Morgan', note: '*'}
-]);
