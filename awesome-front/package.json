@@ -25,6 +25,7 @@
     "@sveltejs/kit": "^1.1.1",
     "bootstrap": "5.2.3",
     "bootstrap-icons": "^1.10.3",
-    "svelte-forms-lib": "^2.0.1"
+    "svelte-forms-lib": "^2.0.1",
+    "svelte-star-rating": "^2.0.1"
   }
 }

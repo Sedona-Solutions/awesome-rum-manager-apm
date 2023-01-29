@@ -1,7 +1,8 @@
+import {Types} from "./types";
+
 export class Rhum {
     id: number;
     name: string;
-    note: string;
     alcoholLevel: number;
     bottleSize: number;
     description: string;
@@ -9,5 +10,5 @@ export class Rhum {
     origin: string;
     price: number;
     stock: number;
-    type: string;
+    type: Types;
 }
