@@ -4,5 +4,5 @@
 
 <ul>
     <li><a href="{base}/home">Home</a></li>
-    <li><a href="{base}/rhums">Rhums</a></li>
+    <li><a href="{base}/rums">Rums</a></li>
 </ul>

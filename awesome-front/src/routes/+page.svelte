@@ -4,7 +4,7 @@
 
 <h1>Home</h1>
 <ul>
-    <li><a href="{base}/rhums">List</a></li>
+    <li><a href="{base}/rums">List</a></li>
 </ul>
 
 

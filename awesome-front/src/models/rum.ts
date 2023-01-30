@@ -1,6 +1,6 @@
 import {Types} from "./types";
 
-export class Rhum {
+export class Rum {
     id: number;
     name: string;
     alcoholLevel: number;

@@ -2,6 +2,10 @@
   import {base} from "$app/paths";
   import {createForm} from "svelte-forms-lib";
   import {Types} from "../../../models/types.ts";
+  import BootstrapIcon from "../../../widgets/BootstrapIcon.svelte";
+  import {goto} from "$app/navigation";
+  import {variables} from "../../../variables.ts";
+
 
   const { form, handleSubmit } = createForm({
     initialValues: {
@@ -16,35 +20,35 @@
       type: ""
     },
     onSubmit: (values) => {
-      const endpoint = "http://localhost:9080/rums";
+      const endpoint = variables.apiBasePath+"/rums";
       fetch(endpoint, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(values)
-      }).then(response => console.log(response));
+      }).then(response => {
+        console.log(response)
+        goto(base+'/rums');
+      });
     },
   });
 </script>
 
 
 <div class="container d-flex justify-content-between">
-  <h1>Ajout d'un rhum</h1>
-  <a class="btn btn-primary" href="{base}/rhums">
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
-      <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-      <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-    </svg>
-    Retour à la liste
+  <h1>Add a new rum</h1>
+  <a class="btn btn-primary" href="{base}/rums">
+    <BootstrapIcon class="me-1" icon="arrow-left-square" width="24" height="24"></BootstrapIcon>
+    Back to the list
   </a>
 </div>
 
 <div class="m-5">
   <form class="row needs-validation" novalidate="" on:submit|preventDefault={handleSubmit}>
     <div class="col-12">
-      <label for="name" class="form-label">Nom</label>
-      <input type="text" class="form-control" name="name" id="name" bind:value={$form.name} required placeholder="Nom du rhum"/>
+      <label for="name" class="form-label">Name</label>
+      <input type="text" class="form-control" name="name" id="name" bind:value={$form.name} required placeholder="Name of rum"/>
     </div>
     <div class="col-12">
       <label for="type" class="form-label">Type</label>
@@ -55,7 +59,7 @@
       </select>
     </div>
     <div class="col-6">
-      <label for="alcoholLevel" class="form-label">Degré d'alcool</label>
+      <label for="alcoholLevel" class="form-label">Alcohol level</label>
       <div class="input-group">
         <input class="form-control" type="number" id="alcoholLevel" bind:value={$form.alcoholLevel} required>
         <span class="input-group-text">°</span>
@@ -70,15 +74,15 @@
     </div>
 
     <div class="col-6">
-      <label for="distillery" class="form-label">Distillerie</label>
+      <label for="distillery" class="form-label">Distillery</label>
       <input class="form-control" type="text" id="distillery" bind:value={$form.distillery} >
     </div>
     <div class="col-6">
-      <label for="origin" class="form-label">Origine</label>
+      <label for="origin" class="form-label">Origin</label>
       <input class="form-control" type="text" id="origin" bind:value={$form.origin}>
     </div>
     <div class="col-6">
-      <label for="price" class="form-label">Prix</label>
+      <label for="price" class="form-label">Price</label>
       <div class="input-group">
         <span class="input-group-text">€</span>
         <input class="form-control" type="number" id="price" bind:value={$form.price} required>
@@ -89,11 +93,11 @@
       <input class="form-control" type="number" id="stock" bind:value={$form.stock}>
     </div>
     <div class="col-12">
-      <label for="description" class="form-label">Description <span class="text-muted">(Optionnel)</span></label>
+      <label for="description" class="form-label">Description <span class="text-muted">(Optional)</span></label>
       <textarea class="form-control" id="description" bind:value={$form.description}></textarea>
     </div>
     <div class="text-end mt-5">
-      <button class="btn btn-primary btn-lg" type="submit">Enregistrer</button>
+      <button class="btn btn-primary btn-lg" type="submit">Save</button>
     </div>
   </form>
 </div>
