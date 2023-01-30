@@ -6,12 +6,14 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
 import fr.sedona.rum.demo.rum.model.domain.RumEntity;
 import fr.sedona.rum.demo.rum.model.domain.enums.RumTypeEnum;
+import lombok.Builder;
 import lombok.Data;
 
 /**
  * DTO used to create or update a {@link RumEntity}
  */
 @Data
+@Builder
 @Schema
 public class RumCreateUpdateRequestDto {
 
