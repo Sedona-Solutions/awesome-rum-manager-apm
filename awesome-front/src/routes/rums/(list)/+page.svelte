@@ -1,15 +1,14 @@
 <script>
     import {base} from "$app/paths";
     import {onMount} from "svelte";
-    import BootstrapIcon from "../../../widgets/BootstrapIcon.svelte";
-    import {variables} from "../../../variables.ts";
+    import BootstrapIcon from "@awesome/widgets/BootstrapIcon.svelte";
+    import {PUBLIC_API_BASE_PATH} from "$env/static/public";
 
     let rums = [];
     onMount(async () => {
-        const endpoint = variables.apiBasePath+"/rums";
+        const endpoint = `${PUBLIC_API_BASE_PATH}/rums`;
         rums = await fetch(endpoint)
             .then(response => response.json())
-            .then((data) => data)
             .catch(error => {
                 console.log(error);
                 return [];

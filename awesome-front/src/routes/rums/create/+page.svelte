@@ -1,26 +1,19 @@
 <script>
   import {base} from "$app/paths";
-  import {createForm} from "svelte-forms-lib";
-  import {Types} from "../../../models/types.ts";
-  import BootstrapIcon from "../../../widgets/BootstrapIcon.svelte";
+  import {Types} from "@awesome/models/types.ts";
+  import BootstrapIcon from "@awesome/widgets/BootstrapIcon.svelte";
   import {goto} from "$app/navigation";
-  import {variables} from "../../../variables.ts";
+  import { PUBLIC_API_BASE_PATH } from '$env/static/public';
+  import {createForm} from "svelte-forms-lib";
 
 
   const { form, handleSubmit } = createForm({
     initialValues: {
-      name: "",
       alcoholLevel: 40,
-      bottleSize: 70,
-      description: "",
-      distillery: "",
-      origin: "",
-      price: "",
-      stock: 0,
-      type: ""
+      bottleSize: 70
     },
     onSubmit: (values) => {
-      const endpoint = variables.apiBasePath+"/rums";
+      const endpoint = `${PUBLIC_API_BASE_PATH}/rums`;
       fetch(endpoint, {
         method: 'POST',
         headers: {

@@ -1,14 +1,14 @@
 <script lang="ts">
     import {base} from "$app/paths";
     import {onMount} from "svelte";
-    import {Rum} from "../../../models/rum.js";
-    import {Types} from "../../../models/types.js";
-    import BootstrapIcon from "../../../widgets/BootstrapIcon.svelte";
-    import {variables} from "../../../variables.ts";
+    import {Rum} from "@awesome/models/rum.ts";
+    import {Types} from "@awesome/models/types.ts";
+    import BootstrapIcon from "@awesome/widgets/BootstrapIcon.svelte";
+    import {PUBLIC_API_BASE_PATH} from "$env/static/public";
 
     export let data
     let rum: Rum = new Rum();
-    const endpoint = variables.apiBasePath+"/rums/"+data.id;
+    const endpoint = `${PUBLIC_API_BASE_PATH}/rums/${data.id}`;
     onMount(async () => {
         const response = await fetch(endpoint).then(response => response.json());
         rum = await response;
