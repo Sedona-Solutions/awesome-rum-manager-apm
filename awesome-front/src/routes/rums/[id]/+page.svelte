@@ -7,11 +7,10 @@
     import {PUBLIC_API_BASE_PATH} from "$env/static/public";
 
     export let data
-    let rum: Rum = new Rum();
+    let rum: Rum|null = null;
     const endpoint = `${PUBLIC_API_BASE_PATH}/rums/${data.id}`;
     onMount(async () => {
-        const response = await fetch(endpoint).then(response => response.json());
-        rum = await response;
+        rum = await fetch(endpoint).then(response => response.json());
     });
 </script>
 
@@ -25,25 +24,27 @@
 
 <div class="m-5">
     <div class="card">
-        <div class="card-body d-flex">
-            <div class="image me-5">
-                <img width="64" src="{base}/assets/wine-bottle-solid.svg" class="img-fluidrounded-circle" alt="">
+        {#if rum}
+            <div class="card-body d-flex">
+                <div class="image me-5">
+                    <img width="64" src="{base}/assets/wine-bottle-solid.svg" class="img-fluidrounded-circle" alt="">
+                </div>
+                <div>
+                    <h5 class="card-title h1">{rum.name}</h5>
+                    <p class="card-text">{rum.description}</p>
+                </div>
             </div>
-            <div>
-                <h5 class="card-title h1">{rum.name}</h5>
-                <p class="card-text">{rum.description}</p>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><b>Type</b> {Types[rum.type]}</li>
+                <li class="list-group-item"><b>Volume</b> {rum.bottleSize}cl</li>
+                <li class="list-group-item"><b>Alcohol level</b> {rum.alcoholLevel}°</li>
+                <li class="list-group-item"><b>Distillery</b> {rum.distillery}</li>
+                <li class="list-group-item"><b>Origin</b> {rum.origin}</li>
+            </ul>
+            <div class="card-body d-flex justify-content-around">
+                <b>{rum.price}€</b>
+                <p><b>Stock</b> {rum.stock}</p>
             </div>
-        </div>
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item"><b>Type</b> {Types[rum.type]}</li>
-            <li class="list-group-item"><b>Volume</b> {rum.bottleSize}cl</li>
-            <li class="list-group-item"><b>Alcohol level</b> {rum.alcoholLevel}°</li>
-            <li class="list-group-item"><b>Distillery</b> {rum.distillery}</li>
-            <li class="list-group-item"><b>Origin</b> {rum.origin}</li>
-        </ul>
-        <div class="card-body d-flex justify-content-around">
-            <b>{rum.price}€</b>
-            <p><b>Stock</b> {rum.stock}</p>
-        </div>
+        {/if}
     </div>
 </div>
