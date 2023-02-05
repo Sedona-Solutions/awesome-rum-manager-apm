@@ -5,21 +5,35 @@
     import {Types} from "@awesome/models/types.ts";
     import BootstrapIcon from "@awesome/widgets/BootstrapIcon.svelte";
     import {PUBLIC_API_BASE_PATH} from "$env/static/public";
+    import {goto} from "$app/navigation";
 
-    export let data
+    export let data;
     let rum: Rum|null = null;
     const endpoint = `${PUBLIC_API_BASE_PATH}/rums/${data.id}`;
     onMount(async () => {
         rum = await fetch(endpoint).then(response => response.json());
     });
+    function removeRum(): void {
+        const endpoint = `${PUBLIC_API_BASE_PATH}/rums/${data.id}`;
+        fetch(endpoint, {method: 'DELETE'}).then((resp) => {
+            console.log(resp)
+            goto(base+'/rums');
+        });
+    }
 </script>
 
 <div class="container d-flex justify-content-between">
     <h1>Rum informations</h1>
-    <a class="btn btn-primary" href="{base}/rums">
-        <BootstrapIcon class="me-1" icon="arrow-left-square" width="24" height="24"></BootstrapIcon>
-        Back to the list
-    </a>
+    <div>
+        <button class="btn btn-danger" on:click={removeRum}>
+            <BootstrapIcon class="me-1" icon="trash" width="24" height="24"></BootstrapIcon>
+            Remove rum
+        </button>
+        <a class="btn btn-primary" href="{base}/rums">
+            <BootstrapIcon class="me-1" icon="arrow-left-square" width="24" height="24"></BootstrapIcon>
+            Back to the list
+        </a>
+    </div>
 </div>
 
 <div class="m-5">

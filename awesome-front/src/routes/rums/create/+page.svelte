@@ -30,10 +30,12 @@
 
 <div class="container d-flex justify-content-between">
   <h1>Add a new rum</h1>
-  <a class="btn btn-primary" href="{base}/rums">
-    <BootstrapIcon class="me-1" icon="arrow-left-square" width="24" height="24"></BootstrapIcon>
-    Back to the list
-  </a>
+  <div>
+    <a class="btn btn-primary" href="{base}/rums">
+      <BootstrapIcon class="me-1" icon="arrow-left-square" width="24" height="24"></BootstrapIcon>
+      Back to the list
+    </a>
+  </div>
 </div>
 
 <div class="m-5">
