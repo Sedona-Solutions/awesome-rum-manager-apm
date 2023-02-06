@@ -25,11 +25,15 @@
 <div class="container d-flex justify-content-between">
     <h1>Rum informations</h1>
     <div>
+        <a class="btn btn-primary" href="{base}/rums/{data.id}/edit">
+            <BootstrapIcon class="me-1" icon="pen" width="24" height="24"></BootstrapIcon>
+            Edit rum
+        </a>
         <button class="btn btn-danger" on:click={removeRum}>
             <BootstrapIcon class="me-1" icon="trash" width="24" height="24"></BootstrapIcon>
             Remove rum
         </button>
-        <a class="btn btn-primary" href="{base}/rums">
+        <a class="btn btn-secondary" href="{base}/rums">
             <BootstrapIcon class="me-1" icon="arrow-left-square" width="24" height="24"></BootstrapIcon>
             Back to the list
         </a>
