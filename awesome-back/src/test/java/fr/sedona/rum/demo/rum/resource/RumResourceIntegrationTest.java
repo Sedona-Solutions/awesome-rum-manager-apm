@@ -11,12 +11,15 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
+import fr.sedona.rum.demo.database.DatabaseTestResource;
 import fr.sedona.rum.demo.rum.model.domain.enums.RumTypeEnum;
 import fr.sedona.rum.demo.rum.model.dto.request.RumCreateUpdateRequestDto;
+import io.quarkus.test.common.QuarkusTestResource;
 import io.quarkus.test.common.http.TestHTTPEndpoint;
 import io.quarkus.test.junit.QuarkusTest;
 
 @QuarkusTest
+@QuarkusTestResource(DatabaseTestResource.class)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @TestHTTPEndpoint(RumResource.class)
 class RumResourceIntegrationTest {
