@@ -22,11 +22,11 @@
     "vite": "^4.0.0"
   },
   "dependencies": {
+    "@elastic/apm-rum": "^5.12.0",
     "@popperjs/core": "^2.11.6",
     "bootstrap": "5.2.3",
     "bootstrap-icons": "^1.10.3",
     "felte": "^1.2.7",
-    "svelte-forms-lib": "^2.0.1",
     "svelte-star-rating": "^2.0.1"
   }
 }

@@ -1,43 +1,59 @@
 <script lang="ts">
     import BootstrapIcon from "../widgets/BootstrapIcon.svelte";
-    import { base } from "$app/paths";
+    import {base} from "$app/paths";
+    import {page} from '$app/stores'
 
+    let pageTitles = new Map<string, string>([
+        ["", "Dashboard"],
+        ["products", "Products"],
+        ["orders", "Orders"],
+        ["metrics", "Metrics"],
+    ]);
+
+    $: pageTitle = pageTitles.get($page.url.pathname.replace(base, '').split('/')[1]);
 </script>
-<header>
-    <div class="px-3 py-2 text-bg-dark">
-        <div class="container">
-            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-                <a href="{base}/" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
-                    <BootstrapIcon class="bi d-block m-3" icon="house-door" width="24" height="24">
-                    </BootstrapIcon>
-                    Awesome Rum
-                </a>
-
-                <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
-                    <li>
-                        <a href="{base}/" class="nav-link text-white">
-                            <BootstrapIcon class="bi d-block mx-auto mb-1" icon="speedometer2" width="24" height="24">
-                            </BootstrapIcon>
-                            Dashboard
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{base}/" class="nav-link text-white">
-                            <BootstrapIcon class="bi d-block mx-auto mb-1"  icon="table" width="24" height="24">
-                            </BootstrapIcon>
-                            Orders
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{base}/" class="nav-link text-white">
-                            <BootstrapIcon class="bi d-block mx-auto mb-1"  icon="grid" width="24" height="24">
-                            </BootstrapIcon>
-                            Products
-                        </a>
-                    </li>
-                </ul>
-            </div>
+<header class="d-flex justify-content-between align-items-center">
+    <div>
+        <h4>{pageTitle}</h4>
+    </div>
+    <div class="d-flex justify-content-end align-items-center gap-3">
+        <div>
+            <BootstrapIcon icon="question-circle" size={18}>
+            </BootstrapIcon>
+        </div>
+        <div class="d-block position-relative">
+            <span class="dot"></span>
+            <BootstrapIcon icon="bell" size={18}>
+            </BootstrapIcon>
+        </div>
+        <div class="d-flex align-items-center gap-2">
+            <img src="{base}/assets/avatar.jpg" class="avatar rounded-circle shadow-4">
+            <span>Kerri Jackson</span>
         </div>
     </div>
-
 </header>
+
+<style lang="scss">
+  header {
+    font-size: 12px;
+    background: linear-gradient(#4b4b4b, #3b3b3b);
+
+    color: white;
+    padding: 10px 30px;
+  }
+
+  .avatar {
+    width: 40px;
+  }
+
+  .dot::before {
+    content: '';
+    background-color: #ef4643;
+    border-radius: 50%;
+    right: 0;
+    position: absolute;
+    height: 8px;
+    width: 8px;
+  }
+</style>
+

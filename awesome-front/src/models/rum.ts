@@ -1,4 +1,4 @@
-import {Types} from "./types";
+import type {Types} from "./types";
 
 export interface Rum {
     id: number;
