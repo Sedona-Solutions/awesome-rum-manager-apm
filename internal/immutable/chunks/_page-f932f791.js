@@ -1,0 +1,1 @@
+import{e as t}from"./index-4d8f42c1.js";import{R as n}from"./rum.repository-cebe5599.js";const i=async({fetch:r,params:o})=>{const e=new n(r);if(o&&Number(o.id))return{rum:await e.findById(+o.id)};throw t(404,"Not found")},m=Object.freeze(Object.defineProperty({__proto__:null,load:i},Symbol.toStringTag,{value:"Module"}));export{m as _,i as l};

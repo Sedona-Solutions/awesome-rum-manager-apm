@@ -1,1 +1,0 @@
-import{j as a}from"./singletons-f9a0d86b.js";var o=(r=>(r.WHITE="Blanc",r.DARK="Ambré",r.AGED="Agé",r.AGRICULTURAL="Agricole",r.ARRANGED="Arrangé",r.SPICED="Épicé",r))(o||{});a.disable_scroll_handling;const t=a.goto;a.invalidate;a.invalidateAll;a.preload_data;a.preload_code;a.before_navigate;a.after_navigate;export{o as T,t as g};
