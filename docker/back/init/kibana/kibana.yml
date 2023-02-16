@@ -8,6 +8,8 @@ xpack.encryptedSavedObjects.encryptionKey: fhjskloppd678ehkdfdlliverpoolfcr
 xpack.fleet.packages:
   - name: fleet_server
     version: latest
+  - name: apm
+    version: latest
 xpack.fleet.agentPolicies:
   - name: Fleet Server (APM)
     id: fleet-server-apm
@@ -19,5 +21,14 @@ xpack.fleet.agentPolicies:
         id: default-fleet-server
         package:
           name: fleet_server
-
-xpack.profiling.enabled: true
+      - name: apm-demo
+        id: default-apm
+        description: default APM integration
+        package:
+          name: apm
+        inputs:
+          - type: apm
+            vars:
+              - name: host
+                value: '0.0.0.0:8200'
+                frozen: true
