@@ -19,6 +19,7 @@
         <mapstruct.version>1.5.3.Final</mapstruct.version>
         <skipITs>true</skipITs>
         <surefire-plugin.version>3.0.0-M7</surefire-plugin.version>
+        <elastic-apm.version>1.36.0</elastic-apm.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -93,6 +94,12 @@
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct-processor</artifactId>
             <version>${mapstruct.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>co.elastic.apm</groupId>
+            <artifactId>apm-agent-attach</artifactId>
+            <version>${elastic-apm.version}</version>
         </dependency>
 
         <!-- Tests -->
