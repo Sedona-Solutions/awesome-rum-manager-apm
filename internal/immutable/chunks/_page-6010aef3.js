@@ -1,0 +1,1 @@
+import{e as o}from"./index-4d8f42c1.js";const r=async({params:e})=>{if(e&&Number(e.id))return{id:e.id};throw o(404,"Not found")},n=Object.freeze(Object.defineProperty({__proto__:null,load:r},Symbol.toStringTag,{value:"Module"}));export{n as _,r as l};
