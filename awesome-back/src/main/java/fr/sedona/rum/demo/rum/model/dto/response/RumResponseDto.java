@@ -1,7 +1,5 @@
 package fr.sedona.rum.demo.rum.model.dto.response;
 
-import org.eclipse.microprofile.openapi.annotations.media.Schema;
-
 import fr.sedona.rum.demo.rum.model.domain.RumEntity;
 import fr.sedona.rum.demo.rum.model.domain.enums.RumTypeEnum;
 import lombok.Builder;
@@ -12,7 +10,6 @@ import lombok.Data;
  */
 @Data
 @Builder
-@Schema
 public class RumResponseDto {
     private long id;
     private String name;

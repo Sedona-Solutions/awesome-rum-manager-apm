@@ -1,11 +1,8 @@
 package fr.sedona.rum.demo.rum.model.dto.request;
 
-import javax.validation.constraints.NotEmpty;
-
-import org.eclipse.microprofile.openapi.annotations.media.Schema;
-
 import fr.sedona.rum.demo.rum.model.domain.RumEntity;
 import fr.sedona.rum.demo.rum.model.domain.enums.RumTypeEnum;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.Builder;
 import lombok.Data;
 
@@ -14,7 +11,6 @@ import lombok.Data;
  */
 @Data
 @Builder
-@Schema
 public class RumCreateUpdateRequestDto {
 
     @NotEmpty

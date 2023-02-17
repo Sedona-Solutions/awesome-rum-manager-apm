@@ -3,31 +3,31 @@ package fr.sedona.rum.demo.core.config;
 import java.util.HashMap;
 import java.util.logging.Logger;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.event.Observes;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.event.EventListener;
+import org.springframework.stereotype.Component;
 
 import co.elastic.apm.attach.ElasticApmAttacher;
-import io.quarkus.runtime.StartupEvent;
 
 /**
  * Listener class for startup event
  */
-@ApplicationScoped
+@Component
 public class StartupListener {
 
-    private static final Logger LOGGER = Logger.getLogger("ListenerBean");
+    private static final Logger LOGGER = Logger.getLogger(StartupListener.class.getName());
 
     /**
      * Programmatically initiliaze elastic java agent after startup
-     * @param ev startup event
      */
-    void onStart(@Observes StartupEvent ev) {
-        LOGGER.info("The application is startingn initializing elastic apm agent...");
+    @EventListener(ApplicationReadyEvent.class)
+    public void onStartup() {
+        LOGGER.info("The application is starting initializing elastic apm agent...");
 
         var config = new HashMap<String, String>();
         config.put("service_name","awesome-back");
         config.put("application_packages","fr.sedona.rum,fr.sedona.rum.demo.core,fr.sedona.rum.demo.rum");
-        config.put("server_url","http://fleet-server:8200");
+        config.put("server_url","http://localhost:8200");
         config.put("verify_server_cert","false");
 
         ElasticApmAttacher.attach(config);

@@ -1,13 +1,13 @@
 package fr.sedona.rum.demo.rum.repository;
 
-import javax.enterprise.context.ApplicationScoped;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
 import fr.sedona.rum.demo.rum.model.domain.RumEntity;
-import io.quarkus.hibernate.reactive.panache.PanacheRepository;
 
 /**
  * Rum repository
  */
-@ApplicationScoped
-public class RumRepository implements PanacheRepository<RumEntity> {
+@Repository
+public interface RumRepository extends CrudRepository<RumEntity, Long> {
 }
