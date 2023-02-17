@@ -1,23 +1,22 @@
 package fr.sedona.rum.demo.rum.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.ws.rs.NotFoundException;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import fr.sedona.rum.demo.rum.model.domain.RumEntity;
 import fr.sedona.rum.demo.rum.model.dto.request.RumCreateUpdateRequestDto;
 import fr.sedona.rum.demo.rum.model.dto.response.RumResponseDto;
 import fr.sedona.rum.demo.rum.model.mapper.RumMapper;
 import fr.sedona.rum.demo.rum.repository.RumRepository;
-import io.quarkus.hibernate.reactive.panache.common.runtime.ReactiveTransactional;
-import io.smallrye.mutiny.Uni;
 import lombok.AllArgsConstructor;
 
 /**
  * Service responsible for {@link RumEntity} operations
  */
-@ApplicationScoped
+@Service
 @AllArgsConstructor
 public class RumService {
 
@@ -26,40 +25,38 @@ public class RumService {
     private final RumRepository rumRepository;
     private final RumMapper rumMapper;
 
-    public Uni<RumEntity> findEntityById(long id) {
-        return rumRepository.findById(id).onItem()
-                .ifNull()
-                .failWith(new NotFoundException(String.format(RUM_NOT_FOUND, id)));
+    public RumEntity findEntityById(long id) {
+        return rumRepository.findById(id).orElseThrow(() -> new RuntimeException(String.format(RUM_NOT_FOUND, id)));
     }
 
-    public Uni<RumResponseDto> findById(long id) {
-        return this.findEntityById(id).map(rumMapper::toResponseDto);
+    public RumResponseDto findById(long id) {
+        RumEntity entity = this.findEntityById(id);
+        return rumMapper.toResponseDto(entity);
     }
 
-    public Uni<List<RumResponseDto>> findAll() {
-        return rumRepository.findAll().stream()
-                .map(rumMapper::toResponseDto)
-                .collect()
-                .asList();
+    public List<RumResponseDto> findAll() {
+        var result = new ArrayList<RumResponseDto>();
+        rumRepository.findAll()
+                .forEach(entity -> result.add(rumMapper.toResponseDto(entity)));
+        return result;
     }
 
-    @ReactiveTransactional
-    public Uni<RumResponseDto> createRum(RumCreateUpdateRequestDto createRequestDto) {
-        return rumRepository
-                .persistAndFlush(rumMapper.toEntity(createRequestDto))
-                .map(rumMapper::toResponseDto);
+    @Transactional
+    public RumResponseDto createRum(RumCreateUpdateRequestDto createRequestDto) {
+        RumEntity createdEntity = rumRepository.save(rumMapper.toEntity(createRequestDto));
+        return rumMapper.toResponseDto(createdEntity);
     }
 
-    @ReactiveTransactional
-    public Uni<RumResponseDto> updateRum(long id, RumCreateUpdateRequestDto updateRequestDto) {
-        return this.findEntityById(id)
-                .map(rumEntity -> rumMapper.toExistingEntity(updateRequestDto, rumEntity))
-                .flatMap(rumRepository::persistAndFlush)
-                .map(rumMapper::toResponseDto);
+    @Transactional
+    public RumResponseDto updateRum(long id, RumCreateUpdateRequestDto updateRequestDto) {
+        RumEntity entityToUpdate = this.findEntityById(id);
+        RumEntity updatedEntity = rumMapper.toExistingEntity(updateRequestDto, entityToUpdate);
+        return rumMapper.toResponseDto(rumRepository.save(updatedEntity));
     }
 
-    @ReactiveTransactional
-    public Uni<Void> deleteRum(long id) {
-        return this.findEntityById(id).flatMap(rumEntity -> rumRepository.delete(rumEntity).replaceWithVoid());
+    @Transactional
+    public void deleteRum(long id) {
+        RumEntity entityToDelete = this.findEntityById(id);
+        rumRepository.delete(entityToDelete);
     }
 }

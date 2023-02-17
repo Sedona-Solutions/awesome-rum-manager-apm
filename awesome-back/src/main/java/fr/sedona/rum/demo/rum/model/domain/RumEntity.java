@@ -1,10 +1,13 @@
 package fr.sedona.rum.demo.rum.model.domain;
 
-import javax.persistence.Entity;
-
 import fr.sedona.rum.demo.rum.model.domain.enums.RumTypeEnum;
-import io.quarkus.hibernate.reactive.panache.PanacheEntity;
-import lombok.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 /**
  * Rum entity
@@ -14,7 +17,11 @@ import lombok.*;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 @Entity(name = "Rum")
-public class RumEntity extends PanacheEntity {
+public class RumEntity {
+
+    @Id
+    @GeneratedValue
+    private long id;
 
     private String name;
     private String description;
