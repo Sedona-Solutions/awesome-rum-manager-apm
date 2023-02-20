@@ -1,15 +1,15 @@
-<script>
-	import RateBottle from "./RateBottle.svelte";
+<script lang="ts">
+    import RateBottle from "./RateBottle.svelte";
 
     // User rating states
-    let rating = null;
-    let hoverRating = null;
+    let rating: number | null = null;
+    let hoverRating: number | null = null;
 
     // using curried function to initialize hover with id
-    const handleHover = (id) => () => {
+    const handleHover = (id: number) => () => {
         hoverRating = id;
     }
-    const handleRate = (id) => (event) => {
+    const handleRate = (id: number) => (event) => {
         if (rating &&
             rating.toString() === event.srcElement.dataset.bottleid
         ) {
