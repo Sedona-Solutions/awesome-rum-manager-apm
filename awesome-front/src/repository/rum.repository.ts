@@ -56,4 +56,12 @@ export class RumRepository {
         }
         return response.json();
     }
+
+    async search(query: string): Promise<Rum[]> {
+        const response = await fetch(`${RUM_PATH}/search?name=${query}`);
+        if (!response.ok) {
+            console.error(`Can't search rums with query [${query}]`, await response.text());
+        }
+        return response.json();
+    }
 }

@@ -6,6 +6,8 @@
     import {RumRepository} from "@awesome/repository/rum.repository";
 
     export let data: PageData;
+    let query = "";
+    let rums = [];
 
     function removeRum(id: number) {
         new RumRepository().deleteById(id).then((resp) => {
@@ -14,7 +16,14 @@
         });
     }
 
-    $: ({rums} = data)
+    function searchRum() {
+        new RumRepository().search(query).then((resp) => {
+            console.log(resp)
+            rums = resp;
+        });
+    }
+
+    rums = data.rums;
 </script>
 
 <div class="m-4">
@@ -25,7 +34,12 @@
             <span class="input-group-text">
             <BootstrapIcon icon="search" size={18}/>
             </span>
-                <input type="text" class="form-control" placeholder="Search by name, origin, ...">
+                <input type="text"
+                       class="form-control"
+                       bind:value={query}
+                       on:input={searchRum}
+                       name="search-input"
+                       placeholder="Search by name, origin, ...">
             </div>
         </div>
         <div class="col">
