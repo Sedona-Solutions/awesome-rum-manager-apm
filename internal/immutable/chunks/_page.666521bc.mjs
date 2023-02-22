@@ -1,1 +1,0 @@
-import{R as o}from"./rum.repository.cebe5599.mjs";const e=async({})=>({rums:await new o().getAll()}),a=Object.freeze(Object.defineProperty({__proto__:null,load:e},Symbol.toStringTag,{value:"Module"}));export{a as _,e as l};

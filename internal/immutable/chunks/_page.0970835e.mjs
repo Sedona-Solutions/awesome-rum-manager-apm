@@ -1,0 +1,1 @@
+import{e as t}from"./index.dd167fef.mjs";import{R as n}from"./rum.repository.6cebe536.mjs";const i=async({fetch:r,params:o})=>{const e=new n(r);if(o&&Number(o.id))return{rum:await e.findById(+o.id)};throw t(404,"Not found")},m=Object.freeze(Object.defineProperty({__proto__:null,load:i},Symbol.toStringTag,{value:"Module"}));export{m as _,i as l};
