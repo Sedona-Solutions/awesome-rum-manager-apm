@@ -91,7 +91,7 @@
       <textarea class="form-control" id="description" name="description"></textarea>
     </div>
     <div class="text-end mt-5">
-      <button class="btn btn-primary btn-lg" type="submit">Save</button>
+      <button class="btn btn-primary btn-lg" type="submit" name="save-rum">Save</button>
     </div>
   </form>
 </div>
