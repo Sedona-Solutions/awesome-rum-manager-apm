@@ -26,7 +26,7 @@ public class StartupListener {
 
         var config = new HashMap<String, String>();
         config.put("service_name","awesome-back");
-        config.put("application_packages","fr.sedona.rum,fr.sedona.rum.demo.core,fr.sedona.rum.demo.rum");
+        config.put("application_packages","fr.sedona.rum");
         config.put("server_url","http://localhost:8200");
         config.put("verify_server_cert","false");
 

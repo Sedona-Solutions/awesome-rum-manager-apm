@@ -12,5 +12,7 @@ var apm = initApm({
     // Set the service version (required for source map feature)
     serviceVersion: '',
     // Set the service environment
-    environment: 'local'
+    environment: 'local',
+    distributedTracingOrigins: ['http://localhost:8080'],
+    propagateTracestate: true
 })

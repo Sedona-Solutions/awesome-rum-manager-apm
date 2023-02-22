@@ -39,6 +39,11 @@ Content-Type: application/json
 ###
 GET {{baseUrl}}/rums
 
+###
+### Search rums by name
+###
+GET {{baseUrl}}/rums/search?name=
+
 
 ###
 ### Retrieve rum by id
