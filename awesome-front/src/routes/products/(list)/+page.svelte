@@ -79,10 +79,10 @@
                 <td>
                     <div class="d-flex gap-2 align-items-center">
                         <a href="{base}/products/{rum.id}/edit">
-                            <BootstrapIcon class="btn-outline-primary" icon="pen" size={20}/>
+                            <BootstrapIcon class="btn-outline-primary" icon="pen" size={20} name="edit-from-list"/>
                         </a>
                         <button class="btn btn-link p-0" on:click="{()=>removeRum(rum.id)}">
-                            <BootstrapIcon class="link-danger" icon="trash" size={20}/>
+                            <BootstrapIcon class="link-danger" icon="trash" size={20} name="delete-from-list"/>
                         </button>
                     </div>
                 </td>

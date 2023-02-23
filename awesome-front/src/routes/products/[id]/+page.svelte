@@ -22,15 +22,15 @@
 <div class="container d-flex justify-content-between">
     <h1>Rum informations</h1>
     <div class="d-inline-flex align-items-center gap-2">
-        <a class="btn btn-primary d-flex align-items-center gap-1" href="{base}/products/{rum.id}/edit">
+        <a class="btn btn-primary d-flex align-items-center gap-1" href="{base}/products/{rum.id}/edit" name="edit-current-rum">
             <BootstrapIcon icon="pen" size={18}/>
             <span>Edit</span>
         </a>
-        <button class="btn btn-danger d-flex align-items-center gap-1" on:click={removeRum}>
+        <button class="btn btn-danger d-flex align-items-center gap-1" on:click={removeRum} name="remove-current-rum">
             <BootstrapIcon icon="trash" size={18}/>
             <span>Remove</span>
         </button>
-        <a class="btn btn-secondary d-flex align-items-center gap-1" href="{base}/products">
+        <a class="btn btn-secondary d-flex align-items-center gap-1" href="{base}/products" name="back-to-list">
             <BootstrapIcon icon="arrow-left" size={18}/>
             <span>Back </span>
         </a>

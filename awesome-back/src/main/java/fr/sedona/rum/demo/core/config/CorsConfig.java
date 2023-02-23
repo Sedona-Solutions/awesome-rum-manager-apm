@@ -1,20 +1,18 @@
 package fr.sedona.rum.demo.core.config;
 
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.reactive.config.CorsRegistry;
-import org.springframework.web.reactive.config.WebFluxConfigurer;
 
 /**
  * Cors configuration needed for the RUM agent to send data with correct traceparent header
  */
 @Configuration
-public class CorsConfig implements WebFluxConfigurer {
+public class CorsConfig implements org.springframework.web.servlet.config.annotation.WebMvcConfigurer {
 
     @Override
-    public void addCorsMappings(CorsRegistry registry) {
+    public void addCorsMappings(org.springframework.web.servlet.config.annotation.CorsRegistry registry) {
 
         registry.addMapping("/**")
-            .allowedOrigins("*")
+                .allowedOrigins("*")
             .allowedMethods("*")
             .allowedHeaders("*")
             .exposedHeaders("*");
