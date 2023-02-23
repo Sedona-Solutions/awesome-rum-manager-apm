@@ -25,7 +25,7 @@
 <div class="container d-flex justify-content-between">
     <h1>Edit</h1>
     <div>
-        <a class="btn btn-primary" href="{base}/products">
+        <a class="btn btn-primary" href="{base}/products" name="back-to-list">
             <BootstrapIcon class="me-1" icon="arrow-left"/>
             Back to the list
         </a>

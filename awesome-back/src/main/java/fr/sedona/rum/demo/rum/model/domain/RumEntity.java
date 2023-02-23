@@ -1,10 +1,18 @@
 package fr.sedona.rum.demo.rum.model.domain;
 
-import javax.persistence.Entity;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextField;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.GenericField;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.KeywordField;
 
 import fr.sedona.rum.demo.rum.model.domain.enums.RumTypeEnum;
-import io.quarkus.hibernate.reactive.panache.PanacheEntity;
-import lombok.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 /**
  * Rum entity
@@ -14,15 +22,29 @@ import lombok.*;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 @Entity(name = "Rum")
-public class RumEntity extends PanacheEntity {
+@Indexed
+public class RumEntity {
 
+    @Id
+    @GeneratedValue
+    private long id;
+
+    @FullTextField
     private String name;
+    @FullTextField
     private String description;
+    @FullTextField
     private String origin;
+    @FullTextField
     private String distillery;
+    @KeywordField
     private RumTypeEnum type;
+    @GenericField
     private float alcoholLevel;
+    @GenericField
     private float price;
+    @GenericField
     private int stock;
+    @GenericField
     private int bottleSize;
 }
