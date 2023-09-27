@@ -44,6 +44,7 @@ services:
       - "./init/elasticsearch/users:/usr/share/elasticsearch/config/users"
       - "./init/elasticsearch/users_roles:/usr/share/elasticsearch/config/users_roles"
       - "./init/elasticsearch/ingest-geoip:/usr/share/elasticsearch/config/ingest-geoip"
+      - "./init/elasticsearch/hunspell:/usr/share/elasticsearch/config/hunspell"
 
   kibana:
     image: docker.elastic.co/kibana/kibana:${STACK_VERSION}

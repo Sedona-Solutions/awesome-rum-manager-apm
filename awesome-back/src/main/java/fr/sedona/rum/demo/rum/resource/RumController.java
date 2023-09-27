@@ -49,7 +49,7 @@ public class RumController {
 
     @PostMapping
     public ResponseEntity<RumResponseDto> createRum(
-            @RequestBody(required = true) @Valid RumCreateUpdateRequestDto rumCreateDto
+            @RequestBody @Valid RumCreateUpdateRequestDto rumCreateDto
     ) {
         var responseDto = rumService.createRum(rumCreateDto);
         return ResponseEntity.ok(responseDto);
@@ -58,7 +58,7 @@ public class RumController {
     @PutMapping("/{id}")
     public ResponseEntity<RumResponseDto> updateRum(
             @PathVariable("id") long id,
-            @RequestBody(required = true) @Valid RumCreateUpdateRequestDto rumUpdateDto
+            @RequestBody @Valid RumCreateUpdateRequestDto rumUpdateDto
     ) {
         var responseDto = rumService.updateRum(id, rumUpdateDto);
         return ResponseEntity.ok(responseDto);
